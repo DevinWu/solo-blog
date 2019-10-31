@@ -10,9 +10,9 @@ DevinWu 的个人博客
 
 ### 最新
 
-* [人的文化基因](https://wudevin.cn/articles/2019/10/30/1572388961100.html)
-* [aql常用命令](https://wudevin.cn/articles/2019/10/29/1572354693549.html)
-* [区块链技术在中国的发展](https://wudevin.cn/articles/2019/10/27/1572152042314.html)
+* [人的文化基因](http://wudevin.cn/articles/2019/10/30/1572388961100.html)
+* [aql常用命令](http://wudevin.cn/articles/2019/10/29/1572354693549.html)
+* [区块链技术在中国的发展](http://wudevin.cn/articles/2019/10/27/1572152042314.html)
 
 
 
