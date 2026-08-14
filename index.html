@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevinWu | Engineering & System Architecture Blog</title>
+  <meta name="description" content="Personal technical blog of DevinWu exploring backend engineering, system architecture, database performance, shell scripting, and software design strategies.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons (FontAwesome CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Marked.js for markdown rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Highlight.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="navbar">
+    <div class="header-container">
+      <a href="#" class="brand-logo" id="logoLink">
+        <span class="logo-icon"><i class="fa-solid fa-code"></i></span>
+        <span class="logo-text">Devin<span class="highlight">Wu</span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#" class="nav-item active" id="navHome"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#articlesSection" class="nav-item"><i class="fa-solid fa-newspaper"></i> Articles</a>
+        <a href="https://github.com/DevinWu" target="_blank" rel="noopener" class="nav-item"><i class="fa-brands fa-github"></i> GitHub</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon moon-icon"></i>
+          <i class="fa-solid fa-sun sun-icon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-container">
+      <div class="profile-card-glass">
+        <div class="avatar-wrapper">
+          <img src="https://avatars.githubusercontent.com/u/10000000?v=4" alt="DevinWu Avatar" class="profile-avatar" id="authorAvatar">
+          <span class="status-indicator" title="Building high performance systems"></span>
+        </div>
+        <div class="profile-info">
+          <div class="role-badge"><i class="fa-solid fa-terminal"></i> Systems & Backend Architecture</div>
+          <h1 class="hero-title">Devin Wu</h1>
+          <p class="hero-bio">
+            Engineering distributed pipelines, optimizing storage engines, and sharing insights on software design, Linux automation, and backend infrastructure.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/DevinWu" target="_blank" rel="noopener" class="social-btn" title="GitHub Profile">
+              <i class="fa-brands fa-github"></i> <span>GitHub</span>
+            </a>
+            <a href="https://github.com/DevinWu/solo-blog" target="_blank" rel="noopener" class="social-btn" title="Blog Repository">
+              <i class="fa-solid fa-code-fork"></i> <span>solo-blog</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="main-container" id="articlesSection">
+    
+    <!-- Search & Filter Controls -->
+    <div class="filter-bar-glass">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search by title, topic, or keyword..." aria-label="Search posts">
+        <button id="clearSearchBtn" class="clear-search-btn" title="Clear Search" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="tags-container" id="tagsContainer">
+        <button class="tag-pill active" data-tag="all">All Topics</button>
+        <!-- Dynamic tags injected by app.js -->
+      </div>
+    </div>
+
+    <!-- Posts Count & Info Header -->
+    <div class="section-meta">
+      <h2 class="section-heading">Featured Engineering Articles</h2>
+      <span class="results-count" id="resultsCount">Showing 8 articles</span>
+    </div>
+
+    <!-- Posts Grid Container -->
+    <div class="posts-grid" id="postsGrid">
+      <!-- Loading Skeleton / Spinner -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading technical posts...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Reading View Modal Overlay -->
+  <div class="article-modal-overlay" id="articleModal">
+    <div class="article-modal-container">
+      <button class="modal-close-btn" id="closeModalBtn" title="Close Article">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <article class="article-detail" id="articleDetailContent">
+        <!-- Rendered markdown article injected here -->
+      </article>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>DevinWu's Tech Blog</h3>
+        <p>Documenting a fascinating life in engineering, code performance, and distributed systems.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/DevinWu" target="_blank" rel="noopener">GitHub Profile</a>
+        <a href="https://github.com/DevinWu/solo-blog" target="_blank" rel="noopener">Source Code</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 DevinWu. Hosted on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Writing Efficient Shell Scripts for Log Analysis",
+    "date": "2019-12-01 22:25:09",
+    "tags": [
+      "shell",
+      "linux",
+      "automation"
+    ],
+    "slug": "writing-shell-scripts",
+    "file": "posts/writing-shell-scripts.md",
+    "readTime": "5 min read",
+    "cover": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A practical guide on writing robust Bash scripts for Kafka consumer log tracking, IP-to-hostname mapping, and cluster metrics automation."
+  },
+  {
+    "title": "Combinatorics Puzzle: 4-Digit Even Numbers from 0 to 7",
+    "date": "2019-11-28 10:04:42",
+    "tags": [
+      "math",
+      "algorithms",
+      "puzzles"
+    ],
+    "slug": "4-digit-even-numbers-permutation",
+    "file": "posts/4-digit-even-numbers-permutation.md",
+    "readTime": "4 min read",
+    "cover": "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A mathematical breakdown of counting non-repeating 4-digit even numbers formed by digits 0 through 7."
+  },
+  {
+    "title": "Getting Started with PowerMock for Network Isolation",
+    "date": "2019-11-17 22:24:44",
+    "tags": [
+      "testing",
+      "java",
+      "powermock"
+    ],
+    "slug": "introduction-to-powermock",
+    "file": "posts/introduction-to-powermock.md",
+    "readTime": "4 min read",
+    "cover": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop",
+    "summary": "How PowerMock solves flaky unit test coverage caused by external network calls in Java projects."
+  },
+  {
+    "title": "My Open Source Projects on GitHub",
+    "date": "2019-11-12 22:51:45",
+    "tags": [
+      "open-source",
+      "github",
+      "projects"
+    ],
+    "slug": "my-open-source-projects",
+    "file": "posts/my-open-source-projects.md",
+    "readTime": "2 min read",
+    "cover": "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=1000&auto=format&fit=crop",
+    "summary": "Highlighted open-source software repositories and personal projects on GitHub."
+  },
+  {
+    "title": "Strategy Over Code: Redesigning API Caching Architecture",
+    "date": "2019-11-10 18:26:24",
+    "tags": [
+      "java",
+      "cache-strategy",
+      "architecture"
+    ],
+    "slug": "strategy-over-code",
+    "file": "posts/strategy-over-code.md",
+    "readTime": "8 min read",
+    "cover": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop",
+    "summary": "Lessons learned from optimizing offline-to-online data ingestion pipelines, handling volatile log API SLAs, and designing sliding window caches using Guava."
+  },
+  {
+    "title": "The Cultural Memes of Humanity: Who Are We?",
+    "date": "2019-10-30 06:42:41",
+    "tags": [
+      "philosophy",
+      "culture",
+      "reflections"
+    ],
+    "slug": "cultural-memes-of-humanity",
+    "file": "posts/cultural-memes-of-humanity.md",
+    "readTime": "3 min read",
+    "cover": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+    "summary": "Philosophical reflections on identity, biological inheritance vs. cultural memes, and what defines our collective human existence."
+  },
+  {
+    "title": "Common AQL Commands for Aerospike Management",
+    "date": "2019-10-29 21:11:33",
+    "tags": [
+      "aerospike",
+      "database",
+      "aql"
+    ],
+    "slug": "common-aql-commands",
+    "file": "posts/common-aql-commands.md",
+    "readTime": "3 min read",
+    "cover": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A handy reference guide for Aerospike Query Language (AQL) command-line operations."
+  },
+  {
+    "title": "Overview of Blockchain Technology Development in China",
+    "date": "2019-10-27 12:54:02",
+    "tags": [
+      "blockchain",
+      "distributed-systems",
+      "cryptography"
+    ],
+    "slug": "blockchain-tech-in-china",
+    "file": "posts/blockchain-tech-in-china.md",
+    "readTime": "5 min read",
+    "cover": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A high-level overview of blockchain fundamentals, distributed ledger architecture, and enterprise application trends in China."
+  }
+]
