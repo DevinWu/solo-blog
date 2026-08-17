@@ -1,5 +1,36 @@
 [
   {
+    "title": "Exploring Endless Possibilities of Technology",
+    "date": "2025-08-17 12:00:00",
+    "tags": [
+      "technology",
+      "innovation",
+      "coding",
+      "inspiration"
+    ],
+    "slug": "exploring-endless-possibilities-of-technology",
+    "file": "posts/exploring-endless-possibilities-of-technology.md",
+    "readTime": "1 min read",
+    "cover": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A collection of inspiring reflections on technology, innovation, and the joy of creation in the digital world."
+  },
+  {
+    "title": "Music, Philosophy, and Personal Growth - A January Journey",
+    "date": "2025-01-22 12:00:00",
+    "tags": [
+      "philosophy",
+      "music",
+      "personal-growth",
+      "spirituality",
+      "reflection"
+    ],
+    "slug": "music-philosophy-and-personal-growth",
+    "file": "posts/music-philosophy-and-personal-growth.md",
+    "readTime": "12 min read",
+    "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=1000&auto=format&fit=crop",
+    "summary": "Reflections on the connections between music, life philosophy, human consciousness, and personal transformation through daily observations and teachings."
+  },
+  {
     "title": "Writing Efficient Shell Scripts for Log Analysis",
     "date": "2019-12-01 22:25:09",
     "tags": [
