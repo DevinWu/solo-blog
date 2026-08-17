@@ -382,12 +382,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function checkUrlHash() {
     const hash = window.location.hash.substring(1);
     if (hash) {
-      const match = allPosts.find(p => p.slug === hash) || allPapers.find(p => p.slug === hash);
-      if (match) {
-        openArticleModal(match.file, match.slug);
+      if (hash === 'papersSection') {
+        showSection('papers');
+      } else if (hash === 'articlesSection') {
+        showSection('articles');
+      } else {
+        const match = allPosts.find(p => p.slug === hash) || allPapers.find(p => p.slug === hash);
+        if (match) {
+          openArticleModal(match.file, match.slug);
+        }
       }
     }
   }
+
+  window.addEventListener('hashchange', checkUrlHash);
 
   function formatDate(dateStr) {
     if (!dateStr) return '';
