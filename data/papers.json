@@ -1,0 +1,87 @@
+[
+  {
+    "title": "Beyond Output Matching - Preserving Internal Geometry in NVFP4 LLM Distillation",
+    "date": "2025-08-17 12:00:00",
+    "tags": [
+      "model-compression",
+      "quantization",
+      "distillation",
+      "llm-inference",
+      "representation-learning"
+    ],
+    "slug": "beyond-output-matching-internal-geometry-nvfp4-distillation",
+    "file": "papers/beyond-output-matching-internal-geometry-nvfp4-distillation.md",
+    "readTime": "10 min read",
+    "cover": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A method that preserves internal representational geometry during ultra-low precision quantization using layerwise Gram matrix alignment, improving reasoning and coding task performance.",
+    "arxivId": "2606.05682"
+  },
+  {
+    "title": "Domain-Adapted Small Language Models with Hybrid Post-Processing",
+    "date": "2025-08-17 12:00:00",
+    "tags": [
+      "small-models",
+      "domain-adaptation",
+      "cost-efficiency",
+      "structured-prediction",
+      "fine-tuning"
+    ],
+    "slug": "domain-adapted-small-language-models-structured-prediction",
+    "file": "papers/domain-adapted-small-language-models-structured-prediction.md",
+    "readTime": "10 min read",
+    "cover": "https://images.unsplash.com/photo-1526374965328-7f5ae4e8e49b?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A framework showing that domain-adapted small language models with post-processing can match frontier model accuracy while dramatically reducing costs, using only minimal training data.",
+    "arxivId": "2606.05781"
+  },
+  {
+    "title": "RLM-Cascade - Response-Level Speculative Decoding for Cost-Efficient LLM API Serving",
+    "date": "2025-08-17 12:00:00",
+    "tags": [
+      "llm-inference",
+      "cost-optimization",
+      "speculative-decoding",
+      "api-serving",
+      "routing"
+    ],
+    "slug": "rlm-cascade-speculative-decoding-cost-efficient",
+    "file": "papers/rlm-cascade-speculative-decoding-cost-efficient.md",
+    "readTime": "11 min read",
+    "cover": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A response-level speculative decoding system that reduces LLM API costs by 45.8% using a two-tier approach with draft and verification models, without requiring access to model internals.",
+    "arxivId": "2606.22840"
+  },
+  {
+    "title": "Learning Dynamic User Personas from Implicit Interaction Streams",
+    "date": "2025-08-17 12:00:00",
+    "tags": [
+      "user-modeling",
+      "personalization",
+      "llm",
+      "implicit-feedback",
+      "behavioral-signals"
+    ],
+    "slug": "learning-dynamic-user-personas-implicit-interactions",
+    "file": "papers/learning-dynamic-user-personas-implicit-interactions.md",
+    "readTime": "9 min read",
+    "cover": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A framework for learning evolving user personas directly from implicit behavioral signals in conversational streams without requiring explicit feedback or demographic data.",
+    "arxivId": "2607.26473"
+  },
+  {
+    "title": "Task-to-Model Optimization for Enterprise LLM Coding Assistants",
+    "date": "2025-08-17 12:00:00",
+    "tags": [
+      "llm",
+      "cost-optimization",
+      "routing",
+      "enterprise",
+      "coding-assistants"
+    ],
+    "slug": "task-to-model-optimization-llm-coding-assistants",
+    "file": "papers/task-to-model-optimization-llm-coding-assistants.md",
+    "readTime": "10 min read",
+    "cover": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop",
+    "summary": "A framework that optimizes enterprise LLM coding assistants by shifting focus from naive token-cost minimization to optimizing cost per completed task while accounting for retry costs and escalations.",
+    "arxivId": "2608.08528"
+  }
+]

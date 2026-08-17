@@ -35,7 +35,8 @@
 
       <nav class="nav-links">
         <a href="#" class="nav-item active" id="navHome"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="#articlesSection" class="nav-item"><i class="fa-solid fa-newspaper"></i> Articles</a>
+        <a href="#articlesSection" class="nav-item" id="navArticles"><i class="fa-solid fa-newspaper"></i> Articles</a>
+        <a href="#papersSection" class="nav-item" id="navPapers"><i class="fa-solid fa-book"></i> Papers</a>
         <a href="https://github.com/DevinWu" target="_blank" rel="noopener" class="nav-item"><i class="fa-brands fa-github"></i> GitHub</a>
       </nav>
 
@@ -76,8 +77,8 @@
     </div>
   </section>
 
-  <!-- Main Content Area -->
-  <main class="main-container" id="articlesSection">
+  <!-- Main Content Area - Articles Section -->
+  <main class="main-container" id="articlesSection" style="display: block;">
     
     <!-- Search & Filter Controls -->
     <div class="filter-bar-glass">
@@ -107,6 +108,41 @@
       <div class="loading-state">
         <div class="spinner"></div>
         <p>Loading technical posts...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Papers Section -->
+  <main class="main-container" id="papersSection" style="display: none;">
+
+    <!-- Search & Filter Controls -->
+    <div class="filter-bar-glass">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="paperSearchInput" placeholder="Search by title, topic, or keyword..." aria-label="Search papers">
+        <button id="clearPaperSearchBtn" class="clear-search-btn" title="Clear Search" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="tags-container" id="paperTagsContainer">
+        <button class="tag-pill active" data-tag="all">All Topics</button>
+        <!-- Dynamic tags injected by app.js -->
+      </div>
+    </div>
+
+    <!-- Papers Count & Info Header -->
+    <div class="section-meta">
+      <h2 class="section-heading">Research Papers</h2>
+      <span class="results-count" id="paperResultsCount">Showing 0 papers</span>
+    </div>
+
+    <!-- Papers Grid Container -->
+    <div class="posts-grid" id="papersGrid">
+      <!-- Loading Skeleton / Spinner -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading research papers...</p>
       </div>
     </div>
   </main>

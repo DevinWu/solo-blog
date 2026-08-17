@@ -5,18 +5,38 @@
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
   const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const articleModal = document.getElementById('articleModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const articleDetailContent = document.getElementById('articleDetailContent');
+
+  // Section Management
+  const articlesSection = document.getElementById('articlesSection');
+  const papersSection = document.getElementById('papersSection');
+  const navArticles = document.getElementById('navArticles');
+  const navPapers = document.getElementById('navPapers');
+  const navHome = document.getElementById('navHome');
+
+  // Articles Elements
   const postsGrid = document.getElementById('postsGrid');
   const searchInput = document.getElementById('searchInput');
   const clearSearchBtn = document.getElementById('clearSearchBtn');
   const tagsContainer = document.getElementById('tagsContainer');
   const resultsCount = document.getElementById('resultsCount');
-  const articleModal = document.getElementById('articleModal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const articleDetailContent = document.getElementById('articleDetailContent');
+
+  // Papers Elements
+  const papersGrid = document.getElementById('papersGrid');
+  const paperSearchInput = document.getElementById('paperSearchInput');
+  const clearPaperSearchBtn = document.getElementById('clearPaperSearchBtn');
+  const paperTagsContainer = document.getElementById('paperTagsContainer');
+  const paperResultsCount = document.getElementById('paperResultsCount');
 
   let allPosts = [];
-  let currentTag = 'all';
+  let allPapers = [];
+  let currentSection = 'articles';
+  let currentArticleTag = 'all';
+  let currentPaperTag = 'all';
   let searchQuery = '';
+  let paperSearchQuery = '';
 
   // Theme Management
   const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -29,26 +49,71 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('theme', newTheme);
   });
 
-  // Fetch Posts Metadata
-  fetch('data/posts.json')
-    .then(res => res.json())
-    .then(data => {
-      allPosts = data;
-      renderTagPills();
-      filterAndRenderPosts();
-      checkUrlHash();
-    })
-    .catch(err => {
-      console.error('Error loading posts data:', err);
-      postsGrid.innerHTML = `
-        <div class="loading-state">
-          <p style="color: #ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> Failed to load articles.</p>
-        </div>
-      `;
-    });
+  // Section Navigation
+  navHome.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('home');
+  });
 
-  // Render Unique Tags
-  function renderTagPills() {
+  navArticles.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('articles');
+  });
+
+  navPapers.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSection('papers');
+  });
+
+  function showSection(section) {
+    currentSection = section;
+
+    // Update nav active state
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+    if (section === 'home') {
+      navHome.classList.add('active');
+      articlesSection.style.display = 'none';
+      papersSection.style.display = 'none';
+    } else if (section === 'articles') {
+      navArticles.classList.add('active');
+      articlesSection.style.display = 'block';
+      papersSection.style.display = 'none';
+    } else if (section === 'papers') {
+      navPapers.classList.add('active');
+      articlesSection.style.display = 'none';
+      papersSection.style.display = 'block';
+    }
+  }
+
+  // Fetch Posts Metadata
+  Promise.all([
+    fetch('data/posts.json').then(res => res.json()).catch(() => []),
+    fetch('data/papers.json').then(res => res.json()).catch(() => [])
+  ]).then(([posts, papers]) => {
+    allPosts = posts;
+    allPapers = papers;
+
+    renderArticles();
+    renderPapers();
+    checkUrlHash();
+  }).catch(err => {
+    console.error('Error loading data:', err);
+    postsGrid.innerHTML = `
+      <div class="loading-state">
+        <p style="color: #ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> Failed to load articles.</p>
+      </div>
+    `;
+  });
+
+  // ============ ARTICLES SECTION ============
+
+  function renderArticles() {
+    renderArticleTagPills();
+    filterAndRenderArticles();
+  }
+
+  function renderArticleTagPills() {
     const tagsSet = new Set();
     allPosts.forEach(post => {
       if (post.tags) {
@@ -57,35 +122,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const tagsArray = Array.from(tagsSet).sort();
-    
-    let html = `<button class="tag-pill ${currentTag === 'all' ? 'active' : ''}" data-tag="all">All Topics</button>`;
+
+    let html = `<button class="tag-pill ${currentArticleTag === 'all' ? 'active' : ''}" data-tag="all">All Topics</button>`;
     tagsArray.forEach(tag => {
-      html += `<button class="tag-pill ${currentTag === tag ? 'active' : ''}" data-tag="${tag}">${tag}</button>`;
+      html += `<button class="tag-pill ${currentArticleTag === tag ? 'active' : ''}" data-tag="${tag}">${tag}</button>`;
     });
 
     tagsContainer.innerHTML = html;
 
-    // Attach Event Listeners to Tags
     tagsContainer.querySelectorAll('.tag-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
         tagsContainer.querySelectorAll('.tag-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentTag = btn.getAttribute('data-tag');
-        filterAndRenderPosts();
+        currentArticleTag = btn.getAttribute('data-tag');
+        filterAndRenderArticles();
       });
     });
   }
 
-  // Filter & Render Posts
-  function filterAndRenderPosts() {
+  function filterAndRenderArticles() {
     const filtered = allPosts.filter(post => {
-      const matchesTag = currentTag === 'all' || (post.tags && post.tags.includes(currentTag));
+      const matchesTag = currentArticleTag === 'all' || (post.tags && post.tags.includes(currentArticleTag));
       const q = searchQuery.toLowerCase().trim();
-      const matchesSearch = !q || 
-        post.title.toLowerCase().includes(q) || 
+      const matchesSearch = !q ||
+        post.title.toLowerCase().includes(q) ||
         post.summary.toLowerCase().includes(q) ||
         (post.tags && post.tags.some(t => t.toLowerCase().includes(q)));
-      
+
       return matchesTag && matchesSearch;
     });
 
@@ -123,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    // Attach Click Event to Cards
     postsGrid.querySelectorAll('.post-card').forEach(card => {
       card.addEventListener('click', () => {
         const file = card.getAttribute('data-file');
@@ -133,21 +195,123 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Search Input Handler
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value;
     clearSearchBtn.style.display = searchQuery ? 'block' : 'none';
-    filterAndRenderPosts();
+    filterAndRenderArticles();
   });
 
   clearSearchBtn.addEventListener('click', () => {
     searchInput.value = '';
     searchQuery = '';
     clearSearchBtn.style.display = 'none';
-    filterAndRenderPosts();
+    filterAndRenderArticles();
   });
 
-  // Open Article Detail Modal
+  // ============ PAPERS SECTION ============
+
+  function renderPapers() {
+    renderPaperTagPills();
+    filterAndRenderPapers();
+  }
+
+  function renderPaperTagPills() {
+    const tagsSet = new Set();
+    allPapers.forEach(paper => {
+      if (paper.tags) {
+        paper.tags.forEach(t => tagsSet.add(t));
+      }
+    });
+
+    const tagsArray = Array.from(tagsSet).sort();
+
+    let html = `<button class="tag-pill ${currentPaperTag === 'all' ? 'active' : ''}" data-tag="all">All Topics</button>`;
+    tagsArray.forEach(tag => {
+      html += `<button class="tag-pill ${currentPaperTag === tag ? 'active' : ''}" data-tag="${tag}">${tag}</button>`;
+    });
+
+    paperTagsContainer.innerHTML = html;
+
+    paperTagsContainer.querySelectorAll('.tag-pill').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        paperTagsContainer.querySelectorAll('.tag-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPaperTag = btn.getAttribute('data-tag');
+        filterAndRenderPapers();
+      });
+    });
+  }
+
+  function filterAndRenderPapers() {
+    const filtered = allPapers.filter(paper => {
+      const matchesTag = currentPaperTag === 'all' || (paper.tags && paper.tags.includes(currentPaperTag));
+      const q = paperSearchQuery.toLowerCase().trim();
+      const matchesSearch = !q ||
+        paper.title.toLowerCase().includes(q) ||
+        paper.summary.toLowerCase().includes(q) ||
+        (paper.tags && paper.tags.some(t => t.toLowerCase().includes(q)));
+
+      return matchesTag && matchesSearch;
+    });
+
+    paperResultsCount.textContent = `Showing ${filtered.length} paper${filtered.length === 1 ? '' : 's'}`;
+
+    if (filtered.length === 0) {
+      papersGrid.innerHTML = `
+        <div class="loading-state">
+          <p><i class="fa-solid fa-folder-open"></i> No matching papers found.</p>
+        </div>
+      `;
+      return;
+    }
+
+    papersGrid.innerHTML = filtered.map(paper => `
+      <div class="post-card" data-slug="${paper.slug}" data-file="${paper.file}">
+        <div class="post-cover-wrapper">
+          <img src="${paper.cover}" alt="${paper.title}" class="post-cover-img" loading="lazy">
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row">
+            <span><i class="fa-solid fa-file"></i> ${paper.arxivId || 'Paper'}</span>
+            <span><i class="fa-regular fa-clock"></i> ${paper.readTime || '10 min read'}</span>
+          </div>
+          <div class="post-tags" style="margin-bottom: 0.6rem;">
+            ${(paper.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+          </div>
+          <h3 class="post-title">${paper.title}</h3>
+          <p class="post-summary">${paper.summary}</p>
+          <div class="post-card-footer">
+            <span>By DevinWu</span>
+            <span class="read-more-link">Read Paper <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    papersGrid.querySelectorAll('.post-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const file = card.getAttribute('data-file');
+        const slug = card.getAttribute('data-slug');
+        openArticleModal(file, slug);
+      });
+    });
+  }
+
+  paperSearchInput.addEventListener('input', (e) => {
+    paperSearchQuery = e.target.value;
+    clearPaperSearchBtn.style.display = paperSearchQuery ? 'block' : 'none';
+    filterAndRenderPapers();
+  });
+
+  clearPaperSearchBtn.addEventListener('click', () => {
+    paperSearchInput.value = '';
+    paperSearchQuery = '';
+    clearPaperSearchBtn.style.display = 'none';
+    filterAndRenderPapers();
+  });
+
+  // ============ MODAL & NAVIGATION ============
+
   function openArticleModal(filePath, slug) {
     articleDetailContent.innerHTML = `
       <div class="loading-state">
@@ -165,10 +329,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return res.text();
       })
       .then(mdText => {
-        // Strip Frontmatter
         const cleanMd = mdText.replace(/^---[\s\S]*?---\n/, '');
-        const postMeta = allPosts.find(p => p.slug === slug);
-        
+        const postMeta = allPosts.find(p => p.slug === slug) || allPapers.find(p => p.slug === slug);
+
         let headerHtml = '';
         if (postMeta) {
           headerHtml = `
@@ -183,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const parsedHtml = marked.parse(cleanMd);
         articleDetailContent.innerHTML = headerHtml + parsedHtml;
 
-        // Apply syntax highlighting
         articleDetailContent.querySelectorAll('pre code').forEach((block) => {
           hljs.highlightElement(block);
         });
@@ -198,7 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // Close Article Modal
   function closeModal() {
     articleModal.classList.remove('active');
     document.body.style.overflow = 'auto';
@@ -218,18 +379,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // URL Hash Navigation (#slug)
   function checkUrlHash() {
     const hash = window.location.hash.substring(1);
     if (hash) {
-      const match = allPosts.find(p => p.slug === hash);
+      const match = allPosts.find(p => p.slug === hash) || allPapers.find(p => p.slug === hash);
       if (match) {
         openArticleModal(match.file, match.slug);
       }
     }
   }
 
-  // Helper Date Formatter
   function formatDate(dateStr) {
     if (!dateStr) return '';
     const date = new Date(dateStr);
