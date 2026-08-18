@@ -11,7 +11,7 @@ summary: A collection of inspiring reflections on technology, innovation, and th
 
 ## Exploring the Endless Possibilities of Technology
 
-![Technology Inspiration](life/images/life1.png)
+![Technology Inspiration](https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop)
 
 *Explore the endless possibilities of technology and ignite the spark of innovation.*
 
@@ -19,7 +19,7 @@ summary: A collection of inspiring reflections on technology, innovation, and th
 
 ## Discovering the Joy of Creation
 
-![Creative Coding](life/images/life2.png)
+![Creative Coding](https://images.unsplash.com/photo-1517694712687-c8bc9a80f4df?q=80&w=800&auto=format&fit=crop)
 
 *In the world of code, discover the joy of creation.*
 
@@ -27,7 +27,7 @@ summary: A collection of inspiring reflections on technology, innovation, and th
 
 ## Using Technology to Transform the Future
 
-![The Future](life/images/life3.png)
+![The Future](https://images.unsplash.com/photo-1516321318423-f06f70a504f9?q=80&w=800&auto=format&fit=crop)
 
 *Use technology to change the future and embrace infinite possibilities.*
 
