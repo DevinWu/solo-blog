@@ -336,6 +336,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const cleanMd = mdText.replace(/^---[\s\S]*?---\n/, '');
         const postMeta = allPosts.find(p => p.slug === slug) || allPapers.find(p => p.slug === slug);
 
+        let tagsHtml = '';
+        if (postMeta && postMeta.tags && postMeta.tags.length > 0) {
+          const tagsSection = document.getElementById('articleTagsSection');
+          tagsSection.style.display = 'flex';
+          tagsSection.innerHTML = postMeta.tags.map(tag =>
+            `<span class="article-tag">${tag}</span>`
+          ).join('');
+        }
+
         let headerHtml = '';
         if (postMeta) {
           headerHtml = `
@@ -389,6 +398,48 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && articleModal.classList.contains('active')) {
       closeModal();
+    }
+  });
+
+  // Article action buttons
+  const likeBtn = document.getElementById('likeBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const bookmarkBtn = document.getElementById('bookmarkBtn');
+
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.toggle('active');
+    const icon = likeBtn.querySelector('i');
+    if (likeBtn.classList.contains('active')) {
+      icon.classList.remove('fa-regular');
+      icon.classList.add('fa-solid');
+    } else {
+      icon.classList.remove('fa-solid');
+      icon.classList.add('fa-regular');
+    }
+  });
+
+  bookmarkBtn.addEventListener('click', () => {
+    bookmarkBtn.classList.toggle('active');
+    const icon = bookmarkBtn.querySelector('i');
+    if (bookmarkBtn.classList.contains('active')) {
+      icon.classList.remove('fa-regular');
+      icon.classList.add('fa-solid');
+    } else {
+      icon.classList.remove('fa-solid');
+      icon.classList.add('fa-regular');
+    }
+  });
+
+  shareBtn.addEventListener('click', () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      navigator.share({
+        title: document.querySelector('.article-detail h1')?.textContent || 'Article',
+        url: url
+      });
+    } else {
+      navigator.clipboard.writeText(url);
+      alert('Link copied to clipboard!');
     }
   });
 
