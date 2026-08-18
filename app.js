@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let paperSearchQuery = '';
 
   // Theme Management
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.className = `${savedTheme}-theme`;
 
   themeToggleBtn.addEventListener('click', () => {
