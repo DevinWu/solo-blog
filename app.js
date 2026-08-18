@@ -339,10 +339,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let tagsHtml = '';
         if (postMeta && postMeta.tags && postMeta.tags.length > 0) {
           const tagsSection = document.getElementById('articleTagsSection');
-          tagsSection.style.display = 'flex';
-          tagsSection.innerHTML = postMeta.tags.map(tag =>
-            `<span class="article-tag">${tag}</span>`
-          ).join('');
+          if (tagsSection) {
+            tagsSection.style.display = 'flex';
+            tagsSection.innerHTML = postMeta.tags.map(tag =>
+              `<span class="article-tag">${tag}</span>`
+            ).join('');
+          }
+        } else {
+          const tagsSection = document.getElementById('articleTagsSection');
+          if (tagsSection) {
+            tagsSection.style.display = 'none';
+          }
         }
 
         let headerHtml = '';
@@ -358,6 +365,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const parsedHtml = marked.parse(cleanMd);
         articleDetailContent.innerHTML = headerHtml + parsedHtml;
+
+        // Generate Table of Contents
+        const headings = articleDetailContent.querySelectorAll('h2, h3');
+        const tocNav = document.getElementById('tocNav');
+        tocNav.innerHTML = '';
+
+        if (headings.length > 0) {
+          headings.forEach((heading, index) => {
+            const id = `heading-${index}`;
+            heading.id = id;
+
+            const level = heading.tagName.toLowerCase() === 'h2' ? 0 : 1;
+            const link = document.createElement('a');
+            link.href = `#${id}`;
+            link.textContent = heading.textContent;
+            link.style.marginLeft = `${level * 1}rem`;
+
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            tocNav.appendChild(link);
+          });
+        }
 
         articleDetailContent.querySelectorAll('pre code').forEach((block) => {
           hljs.highlightElement(block);
