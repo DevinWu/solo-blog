@@ -113,8 +113,21 @@
     </div>
   </section>
 
-  <!-- Main Content Area - Articles Section -->
-  <main class="main-container" id="articlesSection" style="display: block;">
+  <div class="content-wrapper">
+    <!-- Right Sidebar - Recommendations -->
+    <aside class="right-sidebar" id="rightSidebar">
+      <div class="sidebar-sticky">
+        <div class="recommendation-section">
+          <h3 class="recommendation-title">Trending</h3>
+          <div class="recommendations-list" id="recommendationsList">
+            <!-- Injected by app.js -->
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area - Articles Section -->
+    <main class="main-container" id="articlesSection" style="display: block;">
     
     <!-- Search & Filter Controls -->
     <div class="filter-bar-glass">
@@ -224,6 +237,8 @@
       </div>
     </div>
   </div>
+
+  </div><!-- End content-wrapper -->
 
   <!-- Footer -->
   <footer class="site-footer">

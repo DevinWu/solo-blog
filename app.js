@@ -127,6 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fetch Posts Metadata
+  function renderRecommendations() {
+    const recommendationsList = document.getElementById('recommendationsList');
+    if (!recommendationsList) return;
+
+    // Get top 5 most recent articles
+    const topPosts = allPosts.slice(0, 5);
+
+    recommendationsList.innerHTML = topPosts.map(post => `
+      <a href="#${post.slug}" class="recommendation-item">
+        <div class="recommendation-item-title">${post.title}</div>
+        <div class="recommendation-item-meta">${formatDate(post.date)}</div>
+      </a>
+    `).join('');
+
+    // Add click handlers
+    recommendationsList.querySelectorAll('.recommendation-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slug = item.getAttribute('href').substring(1);
+        const post = allPosts.find(p => p.slug === slug);
+        if (post) openArticleModal(post.file, post.slug);
+      });
+    });
+  }
+
   Promise.all([
     fetch('data/posts.json').then(res => res.json()).catch(() => []),
     fetch('data/papers.json').then(res => res.json()).catch(() => [])
@@ -136,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderArticles();
     renderPapers();
+    renderRecommendations();
     checkUrlHash();
   }).catch(err => {
     console.error('Error loading data:', err);
