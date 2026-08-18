@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const articleModal = document.getElementById('articleModal');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const articleDetailContent = document.getElementById('articleDetailContent');
+  const readingProgressBar = document.getElementById('readingProgressBar');
 
   // Section Management
   const articlesSection = document.getElementById('articlesSection');
@@ -321,6 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     articleModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    articleModal.scrollTop = 0;
+    readingProgressBar.style.width = '0%';
+    articleModal.addEventListener('scroll', updateReadingProgress);
     window.location.hash = slug;
 
     fetch(filePath)
@@ -360,9 +364,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
+  function updateReadingProgress() {
+    const scrollTop = articleModal.scrollTop;
+    const scrollHeight = articleModal.scrollHeight - articleModal.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    readingProgressBar.style.width = progress + '%';
+  }
+
   function closeModal() {
     articleModal.classList.remove('active');
     document.body.style.overflow = 'auto';
+    readingProgressBar.style.width = '0%';
+    articleModal.removeEventListener('scroll', updateReadingProgress);
     history.pushState("", document.title, window.location.pathname + window.location.search);
   }
 

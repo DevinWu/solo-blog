@@ -147,12 +147,15 @@
     </div>
   </main>
 
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-bar" id="readingProgressBar"></div>
+
   <!-- Reading View Modal Overlay -->
   <div class="article-modal-overlay" id="articleModal">
+    <button class="modal-close-btn" id="closeModalBtn" title="Close Article">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
     <div class="article-modal-container">
-      <button class="modal-close-btn" id="closeModalBtn" title="Close Article">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
       <article class="article-detail" id="articleDetailContent">
         <!-- Rendered markdown article injected here -->
       </article>
