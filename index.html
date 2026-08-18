@@ -24,7 +24,43 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="dark-theme">
-  
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="sidebar-nav" id="sidebarNav">
+    <div class="sidebar-logo">
+      <span class="logo-icon"><i class="fa-solid fa-code"></i></span>
+      <span class="logo-text">DevinWu</span>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a href="#" class="sidebar-item active" id="sidebarHome">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+      <a href="#articlesSection" class="sidebar-item" id="sidebarArticles">
+        <i class="fa-solid fa-newspaper"></i>
+        <span>Articles</span>
+      </a>
+      <a href="#papersSection" class="sidebar-item" id="sidebarPapers">
+        <i class="fa-solid fa-book"></i>
+        <span>Papers</span>
+      </a>
+      <a href="https://github.com/DevinWu" target="_blank" class="sidebar-item">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-theme-btn" id="sidebarThemeBtn" title="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+
   <!-- Header / Navigation Bar -->
   <header class="site-header" id="navbar">
     <div class="header-container">
@@ -205,6 +241,8 @@
       <p>&copy; 2026 DevinWu. Hosted on GitHub Pages.</p>
     </div>
   </footer>
+
+  </div><!-- End main-wrapper -->
 
   <script src="app.js"></script>
 </body>

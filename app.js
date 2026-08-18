@@ -51,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Section Navigation
+  const sidebarHome = document.getElementById('sidebarHome');
+  const sidebarArticles = document.getElementById('sidebarArticles');
+  const sidebarPapers = document.getElementById('sidebarPapers');
+  const sidebarThemeBtn = document.getElementById('sidebarThemeBtn');
+
   navHome.addEventListener('click', (e) => {
     e.preventDefault();
     showSection('home');
@@ -66,22 +71,56 @@ document.addEventListener('DOMContentLoaded', () => {
     showSection('papers');
   });
 
+  // Sidebar navigation
+  if (sidebarHome) {
+    sidebarHome.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection('home');
+    });
+  }
+
+  if (sidebarArticles) {
+    sidebarArticles.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection('articles');
+    });
+  }
+
+  if (sidebarPapers) {
+    sidebarPapers.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection('papers');
+    });
+  }
+
+  if (sidebarThemeBtn) {
+    sidebarThemeBtn.addEventListener('click', () => {
+      themeToggleBtn.click();
+    });
+  }
+
   function showSection(section) {
     currentSection = section;
 
-    // Update nav active state
+    // Update top nav active state
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+    // Update sidebar active state
+    document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
 
     if (section === 'home') {
       navHome.classList.add('active');
+      if (sidebarHome) sidebarHome.classList.add('active');
       articlesSection.style.display = 'none';
       papersSection.style.display = 'none';
     } else if (section === 'articles') {
       navArticles.classList.add('active');
+      if (sidebarArticles) sidebarArticles.classList.add('active');
       articlesSection.style.display = 'block';
       papersSection.style.display = 'none';
     } else if (section === 'papers') {
       navPapers.classList.add('active');
+      if (sidebarPapers) sidebarPapers.classList.add('active');
       articlesSection.style.display = 'none';
       papersSection.style.display = 'block';
     }
