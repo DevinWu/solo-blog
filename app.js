@@ -420,10 +420,19 @@ document.addEventListener('DOMContentLoaded', () => {
         let headerHtml = '';
         if (postMeta) {
           headerHtml = `
-            <div class="article-header-meta">
-              <span><i class="fa-regular fa-calendar"></i> ${formatDate(postMeta.date)}</span>
-              <span><i class="fa-regular fa-clock"></i> ${postMeta.readTime}</span>
-              <span><i class="fa-regular fa-user"></i> DevinWu</span>
+            <div class="article-author-card">
+              <div class="author-info">
+                <img src="assets/avatar.jpg" alt="DevinWu" class="author-avatar">
+                <div class="author-details">
+                  <div class="author-name">DevinWu</div>
+                  <div class="author-meta">
+                    <span>${formatDate(postMeta.date)}</span>
+                    <span>•</span>
+                    <span>${postMeta.readTime}</span>
+                  </div>
+                </div>
+              </div>
+              <button class="follow-btn">Follow</button>
             </div>
           `;
         }

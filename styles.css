@@ -919,6 +919,66 @@ body.light-theme .moon-icon { display: block; }
   color: #191919;
 }
 
+/* Article Author Card */
+.article-author-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #191919;
+  font-size: 0.95rem;
+}
+
+.author-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.follow-btn {
+  padding: 0.6rem 1.2rem;
+  background: #191919;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.follow-btn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
 .article-detail .article-header-meta {
   display: flex;
   gap: 1.5rem;
