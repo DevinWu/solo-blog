@@ -186,22 +186,21 @@
     </main>
   </div>
 
-  <div class="content-wrapper">
-    <!-- Right Sidebar - Recommendations -->
-    <aside class="right-sidebar" id="rightSidebar">
+  <!-- Articles Section with Left Sidebar -->
+  <div class="content-wrapper" id="articlesWrapper" style="display: none;">
+    <!-- Left Sidebar - About Articles -->
+    <aside class="left-sidebar" id="articlesSidebar">
       <div class="sidebar-sticky">
-        <div class="recommendation-section">
-          <h3 class="recommendation-title">Trending</h3>
-          <div class="recommendations-list" id="recommendationsList">
-            <!-- Injected by app.js -->
-          </div>
+        <div class="info-card">
+          <h3 class="card-title">About Articles</h3>
+          <p class="card-content">Explore research on cutting-edge technologies, organize insights and learnings, and share professional experiences in engineering, system architecture, and software design.</p>
         </div>
       </div>
     </aside>
 
     <!-- Main Content Area - Articles Section -->
-    <main class="main-container" id="articlesSection" style="display: none;">
-    
+    <main class="main-container" id="articlesSection">
+
     <!-- Search & Filter Controls -->
     <div class="filter-bar-glass">
       <div class="search-box">
@@ -233,41 +232,55 @@
       </div>
     </div>
   </main>
+  </div>
 
-  <!-- Papers Section -->
-  <main class="main-container" id="papersSection" style="display: none;">
+  <!-- Papers Section with Left Sidebar -->
+  <div class="content-wrapper" id="papersWrapper" style="display: none;">
+    <!-- Left Sidebar - About Papers -->
+    <aside class="left-sidebar" id="papersSidebar">
+      <div class="sidebar-sticky">
+        <div class="info-card">
+          <h3 class="card-title">About Papers</h3>
+          <p class="card-content">Curated selection of research papers and technical resources covering system design, performance optimization, and industry best practices in software engineering.</p>
+        </div>
+      </div>
+    </aside>
 
-    <!-- Search & Filter Controls -->
-    <div class="filter-bar-glass">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="paperSearchInput" placeholder="Search by title, topic, or keyword..." aria-label="Search papers">
-        <button id="clearPaperSearchBtn" class="clear-search-btn" title="Clear Search" style="display: none;">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+    <!-- Main Content Area - Papers Section -->
+    <main class="main-container" id="papersSection">
+
+      <!-- Search & Filter Controls -->
+      <div class="filter-bar-glass">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="paperSearchInput" placeholder="Search by title, topic, or keyword..." aria-label="Search papers">
+          <button id="clearPaperSearchBtn" class="clear-search-btn" title="Clear Search" style="display: none;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="tags-container" id="paperTagsContainer">
+          <button class="tag-pill active" data-tag="all">All Topics</button>
+          <!-- Dynamic tags injected by app.js -->
+        </div>
       </div>
 
-      <div class="tags-container" id="paperTagsContainer">
-        <button class="tag-pill active" data-tag="all">All Topics</button>
-        <!-- Dynamic tags injected by app.js -->
+      <!-- Papers Count & Info Header -->
+      <div class="section-meta">
+        <h2 class="section-heading">Research Papers</h2>
+        <span class="results-count" id="paperResultsCount">Showing 0 papers</span>
       </div>
-    </div>
 
-    <!-- Papers Count & Info Header -->
-    <div class="section-meta">
-      <h2 class="section-heading">Research Papers</h2>
-      <span class="results-count" id="paperResultsCount">Showing 0 papers</span>
-    </div>
-
-    <!-- Papers Grid Container -->
-    <div class="posts-grid" id="papersGrid">
-      <!-- Loading Skeleton / Spinner -->
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <p>Loading research papers...</p>
+      <!-- Papers Grid Container -->
+      <div class="posts-grid" id="papersGrid">
+        <!-- Loading Skeleton / Spinner -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Loading research papers...</p>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <!-- Trending Section with Sidebar -->
   <div class="content-wrapper" id="trendingSection" style="display: none;">

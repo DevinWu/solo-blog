@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const readingProgressBar = document.getElementById('readingProgressBar');
 
   // Section Management
+  const articlesWrapper = document.getElementById('articlesWrapper');
+  const papersWrapper = document.getElementById('papersWrapper');
   const articlesSection = document.getElementById('articlesSection');
   const papersSection = document.getElementById('papersSection');
   const trendingSection = document.getElementById('trendingSection');
@@ -130,28 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
       navHome.classList.add('active');
       if (sidebarHome) sidebarHome.classList.add('active');
       homeSection.style.display = 'flex';
-      articlesSection.style.display = 'none';
-      papersSection.style.display = 'none';
+      articlesWrapper.style.display = 'none';
+      papersWrapper.style.display = 'none';
       trendingSection.style.display = 'none';
     } else if (section === 'articles') {
       navArticles.classList.add('active');
       if (sidebarArticles) sidebarArticles.classList.add('active');
       homeSection.style.display = 'none';
-      articlesSection.style.display = 'block';
-      papersSection.style.display = 'none';
+      articlesWrapper.style.display = 'flex';
+      papersWrapper.style.display = 'none';
       trendingSection.style.display = 'none';
     } else if (section === 'papers') {
       navPapers.classList.add('active');
       if (sidebarPapers) sidebarPapers.classList.add('active');
       homeSection.style.display = 'none';
-      articlesSection.style.display = 'none';
-      papersSection.style.display = 'block';
+      articlesWrapper.style.display = 'none';
+      papersWrapper.style.display = 'flex';
       trendingSection.style.display = 'none';
     } else if (section === 'trending') {
       if (sidebarTrending) sidebarTrending.classList.add('active');
       homeSection.style.display = 'none';
-      articlesSection.style.display = 'none';
-      papersSection.style.display = 'none';
+      articlesWrapper.style.display = 'none';
+      papersWrapper.style.display = 'none';
       trendingSection.style.display = 'block';
       renderTrendingArticles();
     }
