@@ -142,6 +142,20 @@
     </aside>
 
     <main class="main-container">
+      <!-- Featured Trending Section -->
+      <section class="featured-section">
+        <div class="section-header">
+          <h2 class="section-heading">Trending</h2>
+          <a href="#trendingSection" class="view-more-link">View More →</a>
+        </div>
+        <div class="posts-grid" id="homeFeaturedTrending">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading trending content...</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Featured Articles Section -->
       <section class="featured-section">
         <div class="section-header">
@@ -255,24 +269,51 @@
     </div>
   </main>
 
-  <!-- Trending Section -->
-  <main class="main-container" id="trendingSection" style="display: none;">
+  <!-- Trending Section with Sidebar -->
+  <div class="content-wrapper" id="trendingSection" style="display: none;">
+    <!-- Left Sidebar - Trending Stats -->
+    <aside class="left-sidebar" id="trendingSidebar">
+      <div class="sidebar-sticky">
+        <div class="stats-card">
+          <div class="stat-item">
+            <div class="stat-number" id="trendingTotalArticles">10</div>
+            <div class="stat-label">Total Articles</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="trendingTotalPapers">5</div>
+            <div class="stat-label">Research Papers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="trendingTotalTopics">52</div>
+            <div class="stat-label">Topics Covered</div>
+          </div>
+        </div>
 
-    <!-- Trending Info Header -->
-    <div class="section-meta">
-      <h2 class="section-heading">Trending</h2>
-      <span class="results-count" id="trendingResultsCount">Showing 0 articles</span>
-    </div>
-
-    <!-- Trending Grid Container -->
-    <div class="posts-grid" id="trendingGrid">
-      <!-- Loading Skeleton / Spinner -->
-      <div class="loading-state">
-        <div class="spinner"></div>
-        <p>Loading trending articles...</p>
+        <div class="info-card">
+          <h3 class="card-title">About Trending</h3>
+          <p class="card-content">Discover the most recently published articles and research papers on engineering, system architecture, and technical insights.</p>
+        </div>
       </div>
-    </div>
-  </main>
+    </aside>
+
+    <!-- Main Trending Content -->
+    <main class="main-container">
+      <!-- Trending Info Header -->
+      <div class="section-meta">
+        <h2 class="section-heading">Trending</h2>
+        <span class="results-count" id="trendingResultsCount">Showing 0 articles</span>
+      </div>
+
+      <!-- Trending Grid Container -->
+      <div class="posts-grid" id="trendingGrid">
+        <!-- Loading Skeleton / Spinner -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Loading trending articles...</p>
+        </div>
+      </div>
+    </main>
+  </div>
 
   <!-- Reading Progress Bar -->
   <div class="reading-progress-bar" id="readingProgressBar"></div>

@@ -257,6 +257,47 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Render featured trending (3 most recent from both articles and papers)
+    const homeFeaturedTrending = document.getElementById('homeFeaturedTrending');
+    if (homeFeaturedTrending) {
+      const allContent = [
+        ...allPosts.map(p => ({...p, type: 'article'})),
+        ...allPapers.map(p => ({...p, type: 'paper'}))
+      ].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+
+      if (allContent.length > 0) {
+        homeFeaturedTrending.innerHTML = allContent.map(item => `
+          <div class="post-card" data-slug="${item.slug}" data-file="${item.file}">
+            <div class="post-cover-wrapper">
+              <img src="${item.cover}" alt="${item.title}" class="post-cover-img" loading="lazy">
+            </div>
+            <div class="post-card-body">
+              <div class="post-meta-row">
+                <span><i class="fa-solid fa-${item.type === 'article' ? 'file-lines' : 'book'}"></i> ${item.type === 'article' ? 'Article' : 'Paper'}</span>
+                <span><i class="fa-regular fa-clock"></i> ${item.readTime || '10 min read'}</span>
+              </div>
+              <div class="post-tags" style="margin-bottom: 0.6rem;">
+                ${(item.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+              </div>
+              <h3 class="post-title">${item.title}</h3>
+              <p class="post-summary">${item.summary}</p>
+              <div class="post-card-footer">
+                <a href="#${item.slug}" class="read-more-link">Read more <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        homeFeaturedTrending.querySelectorAll('.post-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const slug = card.getAttribute('data-slug');
+            const file = card.getAttribute('data-file');
+            openArticleModal(file, slug);
+          });
+        });
+      }
+    }
+
     // Update stats
     const tagsSet = new Set();
     allPosts.forEach(post => {
@@ -273,6 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('totalArticles').textContent = allPosts.length;
     document.getElementById('totalPapers').textContent = allPapers.length;
     document.getElementById('totalTags').textContent = tagsSet.size;
+
+    // Update trending sidebar stats
+    const trendingTotalArticles = document.getElementById('trendingTotalArticles');
+    const trendingTotalPapers = document.getElementById('trendingTotalPapers');
+    const trendingTotalTopics = document.getElementById('trendingTotalTopics');
+
+    if (trendingTotalArticles) trendingTotalArticles.textContent = allPosts.length;
+    if (trendingTotalPapers) trendingTotalPapers.textContent = allPapers.length;
+    if (trendingTotalTopics) trendingTotalTopics.textContent = tagsSet.size;
 
     // Add click handlers for "View More" links
     const viewMoreArticles = document.getElementById('viewMoreArticles');
