@@ -531,12 +531,12 @@ body.light-theme .moon-icon { display: block; }
 
 .recommendations-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 .recommendation-item {
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: var(--radius-md);
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -547,7 +547,7 @@ body.light-theme .moon-icon { display: block; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 140px;
+  min-height: 120px;
 }
 
 .recommendation-item:hover {
