@@ -205,14 +205,7 @@ a:hover {
    ========================================================================== */
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background-color: var(--bg-glass);
-  border-bottom: 1px solid var(--border-color);
-  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  display: none;
 }
 
 .header-container {
