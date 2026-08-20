@@ -102,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function showSection(section) {
     currentSection = section;
 
+    // Close article modal when switching sections
+    articleModal.classList.remove('active');
+
     // Update top nav active state
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
 

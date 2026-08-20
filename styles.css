@@ -759,7 +759,7 @@ body.light-theme .moon-icon { display: block; }
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-normal), visibility var(--transition-normal);
-  padding-right: 250px;
+  padding-right: 400px;
   box-sizing: border-box;
 }
 
@@ -773,7 +773,7 @@ body.light-theme .moon-icon { display: block; }
   position: fixed;
   right: 0;
   top: 0;
-  width: 250px;
+  width: 400px;
   height: 100vh;
   background: #fafafa;
   border-left: 1px solid #e5e5e5;
@@ -1218,11 +1218,11 @@ body.light-theme .moon-icon { display: block; }
   .article-modal-overlay {
     left: 200px;
     width: calc(100vw - 200px);
-    padding-right: 200px;
+    padding-right: 320px;
   }
 
   .article-sidebar {
-    width: 200px;
+    width: 320px;
   }
 }
 
