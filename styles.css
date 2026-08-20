@@ -745,8 +745,8 @@ body.light-theme .moon-icon { display: block; }
 .article-modal-overlay {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100vw;
+  left: 250px;
+  width: calc(100vw - 250px);
   height: 100vh;
   background: #fafafa;
   backdrop-filter: none;
@@ -759,7 +759,7 @@ body.light-theme .moon-icon { display: block; }
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-normal), visibility var(--transition-normal);
-  padding-left: 200px;
+  padding-right: 250px;
   box-sizing: border-box;
 }
 
@@ -771,12 +771,12 @@ body.light-theme .moon-icon { display: block; }
 /* Article Sidebar */
 .article-sidebar {
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
-  width: 200px;
+  width: 250px;
   height: 100vh;
   background: #fafafa;
-  border-right: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
   padding: 2rem 1.5rem;
   overflow-y: auto;
   font-size: 0.9rem;
@@ -816,19 +816,19 @@ body.light-theme .moon-icon { display: block; }
   color: #6b7280;
   font-size: 0.9rem;
   text-decoration: none;
-  border-left: 2px solid transparent;
-  padding-left: 0.8rem;
+  border-right: 2px solid transparent;
+  padding-right: 0.8rem;
   transition: all var(--transition-fast);
 }
 
 .toc-nav a:hover {
   color: #191919;
-  border-left-color: #191919;
+  border-right-color: #191919;
 }
 
 .toc-nav a.active {
   color: #191919;
-  border-left-color: #191919;
+  border-right-color: #191919;
   font-weight: 500;
 }
 
@@ -1214,6 +1214,16 @@ body.light-theme .moon-icon { display: block; }
   .main-wrapper {
     margin-left: 200px;
   }
+
+  .article-modal-overlay {
+    left: 200px;
+    width: calc(100vw - 200px);
+    padding-right: 200px;
+  }
+
+  .article-sidebar {
+    width: 200px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1223,6 +1233,16 @@ body.light-theme .moon-icon { display: block; }
 
   .main-wrapper {
     margin-left: 0;
+  }
+
+  .article-modal-overlay {
+    left: 0;
+    width: 100vw;
+    padding-right: 0;
+  }
+
+  .article-sidebar {
+    display: none !important;
   }
 
   .profile-card-glass {
