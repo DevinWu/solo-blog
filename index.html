@@ -45,6 +45,10 @@
         <i class="fa-solid fa-book"></i>
         <span>Papers</span>
       </a>
+      <a href="#trendingSection" class="sidebar-item" id="sidebarTrending">
+        <i class="fa-solid fa-fire"></i>
+        <span>Trending</span>
+      </a>
       <a href="https://github.com/DevinWu" target="_blank" class="sidebar-item">
         <i class="fa-brands fa-github"></i>
         <span>GitHub</span>
@@ -247,6 +251,25 @@
       <div class="loading-state">
         <div class="spinner"></div>
         <p>Loading research papers...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Trending Section -->
+  <main class="main-container" id="trendingSection" style="display: none;">
+
+    <!-- Trending Info Header -->
+    <div class="section-meta">
+      <h2 class="section-heading">Trending</h2>
+      <span class="results-count" id="trendingResultsCount">Showing 0 articles</span>
+    </div>
+
+    <!-- Trending Grid Container -->
+    <div class="posts-grid" id="trendingGrid">
+      <!-- Loading Skeleton / Spinner -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading trending articles...</p>
       </div>
     </div>
   </main>

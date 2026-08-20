@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Section Management
   const articlesSection = document.getElementById('articlesSection');
   const papersSection = document.getElementById('papersSection');
+  const trendingSection = document.getElementById('trendingSection');
   const navArticles = document.getElementById('navArticles');
   const navPapers = document.getElementById('navPapers');
   const navHome = document.getElementById('navHome');
@@ -30,6 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearPaperSearchBtn = document.getElementById('clearPaperSearchBtn');
   const paperTagsContainer = document.getElementById('paperTagsContainer');
   const paperResultsCount = document.getElementById('paperResultsCount');
+
+  // Trending Elements
+  const trendingGrid = document.getElementById('trendingGrid');
+  const trendingResultsCount = document.getElementById('trendingResultsCount');
 
   let allPosts = [];
   let allPapers = [];
@@ -54,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebarHome = document.getElementById('sidebarHome');
   const sidebarArticles = document.getElementById('sidebarArticles');
   const sidebarPapers = document.getElementById('sidebarPapers');
+  const sidebarTrending = document.getElementById('sidebarTrending');
   const sidebarThemeBtn = document.getElementById('sidebarThemeBtn');
 
   navHome.addEventListener('click', (e) => {
@@ -93,6 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  if (sidebarTrending) {
+    sidebarTrending.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection('trending');
+    });
+  }
+
   if (sidebarThemeBtn) {
     sidebarThemeBtn.addEventListener('click', () => {
       themeToggleBtn.click();
@@ -119,18 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
       homeSection.style.display = 'flex';
       articlesSection.style.display = 'none';
       papersSection.style.display = 'none';
+      trendingSection.style.display = 'none';
     } else if (section === 'articles') {
       navArticles.classList.add('active');
       if (sidebarArticles) sidebarArticles.classList.add('active');
       homeSection.style.display = 'none';
       articlesSection.style.display = 'block';
       papersSection.style.display = 'none';
+      trendingSection.style.display = 'none';
     } else if (section === 'papers') {
       navPapers.classList.add('active');
       if (sidebarPapers) sidebarPapers.classList.add('active');
       homeSection.style.display = 'none';
       articlesSection.style.display = 'none';
       papersSection.style.display = 'block';
+      trendingSection.style.display = 'none';
+    } else if (section === 'trending') {
+      if (sidebarTrending) sidebarTrending.classList.add('active');
+      homeSection.style.display = 'none';
+      articlesSection.style.display = 'none';
+      papersSection.style.display = 'none';
+      trendingSection.style.display = 'block';
+      renderTrendingArticles();
     }
   }
 
@@ -494,6 +517,53 @@ document.addEventListener('DOMContentLoaded', () => {
     clearPaperSearchBtn.style.display = 'none';
     filterAndRenderPapers();
   });
+
+  // ============ TRENDING SECTION ============
+  function renderTrendingArticles() {
+    const trendingArticles = allPosts.slice(0, 6); // Show top 6 most recent articles
+
+    trendingResultsCount.textContent = `Showing ${trendingArticles.length} article${trendingArticles.length === 1 ? '' : 's'}`;
+
+    if (trendingArticles.length === 0) {
+      trendingGrid.innerHTML = `
+        <div class="loading-state">
+          <p><i class="fa-solid fa-folder-open"></i> No trending articles found.</p>
+        </div>
+      `;
+      return;
+    }
+
+    trendingGrid.innerHTML = trendingArticles.map(post => `
+      <div class="post-card" data-slug="${post.slug}" data-file="${post.file}">
+        <div class="post-cover-wrapper">
+          <img src="${post.cover}" alt="${post.title}" class="post-cover-img" loading="lazy">
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row">
+            <span><i class="fa-solid fa-calendar"></i> ${formatDate(post.date)}</span>
+            <span><i class="fa-regular fa-clock"></i> ${post.readTime || '5 min read'}</span>
+          </div>
+          <div class="post-tags" style="margin-bottom: 0.6rem;">
+            ${(post.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+          </div>
+          <h3 class="post-title">${post.title}</h3>
+          <p class="post-summary">${post.summary}</p>
+          <div class="post-card-footer">
+            <span>By DevinWu</span>
+            <span class="read-more-link">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    trendingGrid.querySelectorAll('.post-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const file = card.getAttribute('data-file');
+        const slug = card.getAttribute('data-slug');
+        openArticleModal(file, slug);
+      });
+    });
+  }
 
   // ============ MODAL & NAVIGATION ============
 
