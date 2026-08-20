@@ -12,7 +12,7 @@
     "slug": "beyond-output-matching-internal-geometry-nvfp4-distillation",
     "file": "papers/beyond-output-matching-internal-geometry-nvfp4-distillation.md",
     "readTime": "10 min read",
-    "cover": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop",
+    "cover": "https://picsum.photos/400/250?random=1",
     "summary": "A method that preserves internal representational geometry during ultra-low precision quantization using layerwise Gram matrix alignment, improving reasoning and coding task performance.",
     "arxivId": "2606.05682"
   },
@@ -29,7 +29,7 @@
     "slug": "domain-adapted-small-language-models-structured-prediction",
     "file": "papers/domain-adapted-small-language-models-structured-prediction.md",
     "readTime": "10 min read",
-    "cover": "https://images.unsplash.com/photo-1516321318423-f06f70a504f9?q=80&w=1000&auto=format&fit=crop",
+    "cover": "https://picsum.photos/400/250?random=2",
     "summary": "A framework showing that domain-adapted small language models with post-processing can match frontier model accuracy while dramatically reducing costs, using only minimal training data.",
     "arxivId": "2606.05781"
   },
@@ -46,7 +46,7 @@
     "slug": "rlm-cascade-speculative-decoding-cost-efficient",
     "file": "papers/rlm-cascade-speculative-decoding-cost-efficient.md",
     "readTime": "11 min read",
-    "cover": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    "cover": "https://picsum.photos/400/250?random=3",
     "summary": "A response-level speculative decoding system that reduces LLM API costs by 45.8% using a two-tier approach with draft and verification models, without requiring access to model internals.",
     "arxivId": "2606.22840"
   },
@@ -63,7 +63,7 @@
     "slug": "learning-dynamic-user-personas-implicit-interactions",
     "file": "papers/learning-dynamic-user-personas-implicit-interactions.md",
     "readTime": "9 min read",
-    "cover": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop",
+    "cover": "https://picsum.photos/400/250?random=4",
     "summary": "A framework for learning evolving user personas directly from implicit behavioral signals in conversational streams without requiring explicit feedback or demographic data.",
     "arxivId": "2607.26473"
   },
@@ -80,7 +80,7 @@
     "slug": "task-to-model-optimization-llm-coding-assistants",
     "file": "papers/task-to-model-optimization-llm-coding-assistants.md",
     "readTime": "10 min read",
-    "cover": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop",
+    "cover": "https://picsum.photos/400/250?random=5",
     "summary": "A framework that optimizes enterprise LLM coding assistants by shifting focus from naive token-cost minimization to optimizing cost per completed task while accounting for retry costs and escalations.",
     "arxivId": "2608.08528"
   }
