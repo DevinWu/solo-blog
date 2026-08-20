@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       homeSection.style.display = 'none';
       articlesWrapper.style.display = 'none';
       papersWrapper.style.display = 'none';
-      trendingSection.style.display = 'block';
+      trendingSection.style.display = 'flex';
       renderTrendingArticles();
     }
   }
