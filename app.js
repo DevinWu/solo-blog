@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allPosts = [];
   let allPapers = [];
-  let currentSection = 'articles';
+  let currentSection = 'home';
   let currentArticleTag = 'all';
   let currentPaperTag = 'all';
   let searchQuery = '';
@@ -111,19 +111,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update sidebar active state
     document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
 
+    const homeSection = document.getElementById('homeSection');
+
     if (section === 'home') {
       navHome.classList.add('active');
       if (sidebarHome) sidebarHome.classList.add('active');
+      homeSection.style.display = 'flex';
       articlesSection.style.display = 'none';
       papersSection.style.display = 'none';
     } else if (section === 'articles') {
       navArticles.classList.add('active');
       if (sidebarArticles) sidebarArticles.classList.add('active');
+      homeSection.style.display = 'none';
       articlesSection.style.display = 'block';
       papersSection.style.display = 'none';
     } else if (section === 'papers') {
       navPapers.classList.add('active');
       if (sidebarPapers) sidebarPapers.classList.add('active');
+      homeSection.style.display = 'none';
       articlesSection.style.display = 'none';
       papersSection.style.display = 'block';
     }
@@ -155,6 +160,116 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function renderHome() {
+    // Render featured articles (first 3)
+    const homeFeaturedPosts = document.getElementById('homeFeaturedPosts');
+    if (homeFeaturedPosts) {
+      const featuredPosts = allPosts.slice(0, 3);
+      homeFeaturedPosts.innerHTML = featuredPosts.map(post => `
+        <div class="post-card" data-slug="${post.slug}" data-file="${post.file}">
+          <div class="post-cover-wrapper">
+            <img src="${post.cover}" alt="${post.title}" class="post-cover-img" loading="lazy">
+          </div>
+          <div class="post-card-body">
+            <div class="post-meta-row">
+              <span><i class="fa-regular fa-calendar"></i> ${formatDate(post.date)}</span>
+              <span><i class="fa-regular fa-clock"></i> ${post.readTime || '5 min read'}</span>
+            </div>
+            <div class="post-tags" style="margin-bottom: 0.6rem;">
+              ${(post.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+            </div>
+            <h3 class="post-title">${post.title}</h3>
+            <p class="post-summary">${post.summary}</p>
+            <div class="post-card-footer">
+              <a href="#${post.slug}" class="read-more-link">Read more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Add click handlers for cards
+      homeFeaturedPosts.querySelectorAll('.post-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const slug = card.getAttribute('data-slug');
+          const file = card.getAttribute('data-file');
+          openArticleModal(file, slug);
+        });
+      });
+    }
+
+    // Render featured papers (first 3)
+    const homeFeaturedPapers = document.getElementById('homeFeaturedPapers');
+    if (homeFeaturedPapers) {
+      const featuredPapers = allPapers.slice(0, 3);
+      if (featuredPapers.length > 0) {
+        homeFeaturedPapers.innerHTML = featuredPapers.map(paper => `
+          <div class="post-card" data-slug="${paper.slug}" data-file="${paper.file}">
+            <div class="post-cover-wrapper">
+              <img src="${paper.cover}" alt="${paper.title}" class="post-cover-img" loading="lazy">
+            </div>
+            <div class="post-card-body">
+              <div class="post-meta-row">
+                <span><i class="fa-regular fa-calendar"></i> ${formatDate(paper.date)}</span>
+              </div>
+              <div class="post-tags" style="margin-bottom: 0.6rem;">
+                ${(paper.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
+              </div>
+              <h3 class="post-title">${paper.title}</h3>
+              <p class="post-summary">${paper.summary}</p>
+              <div class="post-card-footer">
+                <a href="#${paper.slug}" class="read-more-link">Read more <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Add click handlers for cards
+        homeFeaturedPapers.querySelectorAll('.post-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const slug = card.getAttribute('data-slug');
+            const file = card.getAttribute('data-file');
+            openArticleModal(file, slug);
+          });
+        });
+      }
+    }
+
+    // Update stats
+    const tagsSet = new Set();
+    allPosts.forEach(post => {
+      if (post.tags) {
+        post.tags.forEach(t => tagsSet.add(t));
+      }
+    });
+    allPapers.forEach(paper => {
+      if (paper.tags) {
+        paper.tags.forEach(t => tagsSet.add(t));
+      }
+    });
+
+    document.getElementById('totalArticles').textContent = allPosts.length;
+    document.getElementById('totalPapers').textContent = allPapers.length;
+    document.getElementById('totalTags').textContent = tagsSet.size;
+
+    // Add click handlers for "View More" links
+    const viewMoreArticles = document.getElementById('viewMoreArticles');
+    const viewMorePapers = document.getElementById('viewMorePapers');
+
+    if (viewMoreArticles) {
+      viewMoreArticles.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection('articles');
+      });
+    }
+
+    if (viewMorePapers) {
+      viewMorePapers.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection('papers');
+      });
+    }
+  }
+
   Promise.all([
     fetch('data/posts.json').then(res => res.json()).catch(() => []),
     fetch('data/papers.json').then(res => res.json()).catch(() => [])
@@ -164,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderArticles();
     renderPapers();
+    renderHome();
     renderRecommendations();
     checkUrlHash();
   }).catch(err => {

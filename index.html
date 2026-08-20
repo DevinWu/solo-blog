@@ -113,6 +113,61 @@
     </div>
   </section>
 
+  <!-- Home Section - Featured Content -->
+  <div class="content-wrapper" id="homeSection" style="display: flex;">
+    <aside class="right-sidebar" id="homeRightSidebar">
+      <div class="sidebar-sticky">
+        <div class="stats-section">
+          <h3 class="stats-title">Blog Stats</h3>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number" id="totalArticles">0</div>
+              <div class="stat-label">Articles</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="totalPapers">0</div>
+              <div class="stat-label">Papers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="totalTags">0</div>
+              <div class="stat-label">Topics</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-container">
+      <!-- Featured Articles Section -->
+      <section class="featured-section">
+        <div class="section-header">
+          <h2 class="section-heading">Latest Articles</h2>
+          <a href="#articlesSection" class="view-more-link" id="viewMoreArticles">View More →</a>
+        </div>
+        <div class="posts-grid" id="homeFeaturedPosts">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading articles...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Papers Section -->
+      <section class="featured-section">
+        <div class="section-header">
+          <h2 class="section-heading">Research Papers</h2>
+          <a href="#papersSection" class="view-more-link" id="viewMorePapers">View More →</a>
+        </div>
+        <div class="posts-grid" id="homeFeaturedPapers">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading papers...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
   <div class="content-wrapper">
     <!-- Right Sidebar - Recommendations -->
     <aside class="right-sidebar" id="rightSidebar">
@@ -127,7 +182,7 @@
     </aside>
 
     <!-- Main Content Area - Articles Section -->
-    <main class="main-container" id="articlesSection" style="display: block;">
+    <main class="main-container" id="articlesSection" style="display: none;">
     
     <!-- Search & Filter Controls -->
     <div class="filter-bar-glass">
