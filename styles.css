@@ -837,7 +837,7 @@ body.light-theme .moon-icon { display: block; }
   background: #ffffff;
   border: none;
   border-radius: 0;
-  max-width: 728px;
+  max-width: 900px;
   width: 100%;
   padding: 3.5rem 0;
   padding-left: 0;
@@ -884,7 +884,7 @@ body.light-theme .moon-icon { display: block; }
   gap: 0.8rem;
   flex-wrap: wrap;
   margin-bottom: 1.2rem;
-  padding: 0 4.5rem;
+  padding: 0 3rem;
 }
 
 .article-tag {
@@ -905,7 +905,7 @@ body.light-theme .moon-icon { display: block; }
 
 /* Article Detail Typography */
 .article-detail {
-  padding: 0 4.5rem;
+  padding: 0 3rem;
   color: #191919;
 }
 
@@ -1104,7 +1104,7 @@ body.light-theme .moon-icon { display: block; }
   display: flex;
   gap: 1rem;
   margin-top: 3rem;
-  padding: 2rem 4.5rem;
+  padding: 2rem 3rem;
   border-top: 1px solid #e5e5e5;
 }
 
@@ -1244,8 +1244,20 @@ body.light-theme .moon-icon { display: block; }
   }
 
   .article-modal-container {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1rem;
     max-width: 100%;
+  }
+
+  .article-detail {
+    padding: 0 1.5rem;
+  }
+
+  .article-tags-section {
+    padding: 0 1.5rem;
+  }
+
+  .article-footer-actions {
+    padding: 2rem 1.5rem;
   }
 
   .article-detail h1 {
