@@ -315,15 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('totalPapers').textContent = allPapers.length;
     document.getElementById('totalTags').textContent = tagsSet.size;
 
-    // Update trending sidebar stats
-    const trendingTotalArticles = document.getElementById('trendingTotalArticles');
-    const trendingTotalPapers = document.getElementById('trendingTotalPapers');
-    const trendingTotalTopics = document.getElementById('trendingTotalTopics');
-
-    if (trendingTotalArticles) trendingTotalArticles.textContent = allPosts.length;
-    if (trendingTotalPapers) trendingTotalPapers.textContent = allPapers.length;
-    if (trendingTotalTopics) trendingTotalTopics.textContent = tagsSet.size;
-
     // Add click handlers for "View More" links
     const viewMoreArticles = document.getElementById('viewMoreArticles');
     const viewMorePapers = document.getElementById('viewMorePapers');
